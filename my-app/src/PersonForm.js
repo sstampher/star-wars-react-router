@@ -1,15 +1,23 @@
-import {Route, Link, HashRouter as Router} from 'react-router-dom'
-import React from 'react';
+import React, {Component} from 'react';
 
-export default function PersonForm(props){
-    return (
-        <div id="createPerson">
-            <h2>Create a Person</h2>
-            <input onClick={()=> props.onCreate} type="submit" value="Create" />
-            <input type="text" name="assignee" value=''/>
-           
-        
-        </div>
+export default class PersonForm extends Component{
+    constructor(props){
+        super(props)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
 
-    )
-}
+    handleSubmit(e){
+        e.preventDefault();
+        this.props.onCreate(e.target.name.value);
+    }
+
+    render (){
+            return (
+                <form id="addName" onSubmit = {this.handleSubmit}>
+                    <label>Create a Person</label>
+                    <input type="text" name="name" />
+                    <button type="submit">Create</button>
+                </form>
+            )
+    }
+} 

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Route, Link, HashRouter as Router} from 'react-router-dom'
+import {Route, HashRouter as Router} from 'react-router-dom'
 import Nav from './Nav.js'
 import Home from './Home.js'
 import People from './People.js'
@@ -36,13 +35,13 @@ class App extends Component {
   }
   
   async componentDidMount(){
-    const arr=[];
+    const namesArr=[];
 
     try{
       const api = await Axios.get('https://profs-star-wars.herokuapp.com/people');
       const response = api.data;
       for(let i=0;i<response.length;i++){
-        arr.push(response[i].name);
+        namesArr.push(response[i].name);
       }
     }
     catch(err){
@@ -50,7 +49,7 @@ class App extends Component {
     }
 
     this.setState({
-      names:arr
+      names:namesArr
     })
   }
   
@@ -63,7 +62,7 @@ class App extends Component {
           <h2>Star Wars CRD (no U)</h2>
           <Route render={() => <Nav names = {this.state.names}/>} />
           <Route exact path='/People' render={() => <People names = {this.state.names} onDelete = {this.onDelete}/>} />
-          <Route exact path='/People/Create' render={(props)=> <PersonForm onCreate = {this.onCreate}/>} />
+          <Route exact path='/People/Create' render={()=> <PersonForm onCreate = {this.onCreate}/>} />
           <Route exact path='/Home' component = {Home} />  
       </Router>
     )
