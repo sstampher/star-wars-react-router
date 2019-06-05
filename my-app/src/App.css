@@ -1,0 +1,25 @@
+#links{
+  display: flex;
+}
+
+#links > a{
+  padding-left: 50px;
+}
+
+#names{
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 25px;
+  padding-left: 125px
+}
+
+#name{
+  display: flex;
+  flex-direction: row;
+}
+
+#home{
+  padding-top: 25px;
+  padding-left: 170px
+}
